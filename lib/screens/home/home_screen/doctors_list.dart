@@ -1,98 +1,110 @@
+import 'package:book_your_doctor/screens/details/appoinment_details.dart';
 import 'package:book_your_doctor/size_config/size_config.dart';
 import 'package:flutter/material.dart';
 
 class DoctorsList extends StatelessWidget {
-  const DoctorsList({super.key});
-
+  const DoctorsList(
+      {super.key,
+      required this.title,
+      required this.subTitle,
+      required this.image,
+      required this.rating});
+  final String title, subTitle, image;
+  final double rating;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: SizeConfig.screenHeight * 0.2,
-          width: SizeConfig.screenWidth * 0.9,
-          decoration: BoxDecoration(
+    return Container(
+      height: SizeConfig.screenHeight * 0.2,
+      width: SizeConfig.screenWidth * 0.9,
+      decoration: BoxDecoration(
           border: Border.all(color: Colors.black.withOpacity(0.1)),
-          borderRadius: BorderRadius.circular(20)
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          borderRadius: BorderRadius.circular(20)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 20, left: 20),
+          child: Column(
             children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 20,left: 20),
-              child: Column(
+              Stack(
                 children: [
-                  Stack(
-                    children:[ 
-                      Container(
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
                       height: 70,
                       width: 70,
-                      child: Icon(Icons.person),
-                      decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(20),
-                      ),
+                      child: Image(image: AssetImage(image),fit: BoxFit.cover,),
                     ),
-                    Positioned(
-                      right: 0,
-                      child: CircleAvatar(
-                        radius: 5,
-                        backgroundColor: const Color.fromARGB(255, 107, 225, 111),
-                      ),
-                    )
-                ],),
-                SizedBox(height: 10,),
-                Row(
-                  children: [
-                    Icon(Icons.star_half_rounded,color: Color.fromARGB(255, 141, 240, 144),),
-                    SizedBox(width: 10,),
-                    Text("4.8")
-                  ],
-                )
+                  ),
+                  const Positioned(
+                    right: 0,
+                    child: CircleAvatar(
+                      radius: 5,
+                      backgroundColor: Color.fromARGB(255, 107, 225, 111),
+                    ),
+                  )
                 ],
               ),
-            ),
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 25,left: 30),
-                  child: Text.rich(
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.star_half_rounded,
+                    color: Color.fromARGB(255, 141, 240, 144),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text("$rating")
+                ],
+              )
+            ],
+          ),
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 25, left: 30),
+              child: Text.rich(TextSpan(
+                  text: "$title\n",
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  children: [
                     TextSpan(
-                      text: "Dr.Name\n",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      children: [
-                        TextSpan(
-                          style: TextStyle(
+                        style: TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.normal,
-                            color: Colors.black.withOpacity(0.5)
-                          ),
-                          text: "Heart Surgeon,London,England"
-                        )
-                      ]
-                    )
-                  ),
-                ),
-                Container(
-                  height: SizeConfig.screenHeight/20,
-                  width: SizeConfig.screenWidth * 0.3,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(10)
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("Appointment"),
-                  ),
-                )
-              ],
+                            color: Colors.black.withOpacity(0.5)),
+                        text: subTitle)
+                  ])),
             ),
-          ]),
+            SizedBox(height: 10,),
+            TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.grey.withOpacity(0.2),
+              ),
+              onPressed: (){
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_){
+                    return AppoinmemntDetails(image: image,name: title,);
+                  })
+                );
+              },
+              child: const Text("Appointment",
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.normal
+              ),
+              ),
+            ),
+          ],
         ),
-      ],
+      ]),
     );
   }
 }

@@ -17,14 +17,29 @@ class _HomeScreenState extends State<HomeScreen> {
 
   SizeConfig().init(context);
     return Scaffold(
-      body: Column(
-        children: [
-          HomeHeader(),
-          SizedBox(height: 10,),
-          Categories(),
-          SizedBox(height: 10,),
-          DoctorsList(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            HomeHeader(),
+            SizedBox(height: 10,),
+            Categories(),
+            SizedBox(height: 10,),
+            DoctorsList(
+              title: "Dr.Name 1",
+              subTitle: "Heart Surgeon , London , England",
+              image: "assets/images/doctor_one.png",
+              rating: 4.9,
+            ),
+            SizedBox(height: 10,),
+            DoctorsList(
+               title: "Dr.Name 2",
+              subTitle: "General Dentist",
+              image: "assets/images/doctor_two.png",
+              rating: 4,
+            ),
+
+          ],
+        ),
       ),
     );
   }
