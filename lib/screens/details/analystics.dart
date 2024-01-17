@@ -15,7 +15,7 @@ class DoctorAnalystics extends StatelessWidget {
           width: SizeConfig.screenWidth * 0.95,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-        color: Color.fromARGB(198, 159, 119, 253),
+        color: const Color.fromARGB(198, 159, 119, 253),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -27,7 +27,7 @@ class DoctorAnalystics extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20)
               ),
-              child: Column(
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("350+",
@@ -52,7 +52,7 @@ class DoctorAnalystics extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20)
               ),
-              child: Column(
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("15+",
@@ -62,7 +62,7 @@ class DoctorAnalystics extends StatelessWidget {
                     color: Color.fromARGB(255, 137, 247, 141),
                   ),
                   ),
-                  Text("Exp.years",
+                   Text("Exp.years",
                   style: TextStyle(
                     color: Colors.grey
                   ),
@@ -77,7 +77,7 @@ class DoctorAnalystics extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20)
               ),
-              child: Column(
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("284+",

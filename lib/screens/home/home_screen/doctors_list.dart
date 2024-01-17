@@ -25,11 +25,12 @@ class DoctorsList extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 20, left: 20),
           child: Column(
+            // mainAxisSize: MainAxisSize.min,
             children: [
               Stack(
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(15),
                     child: Container(
                       height: 70,
                       width: 70,
@@ -55,7 +56,7 @@ class DoctorsList extends StatelessWidget {
                     color: Color.fromARGB(255, 141, 240, 144),
                   ),
                   const SizedBox(
-                    width: 10,
+                    width: 5,
                   ),
                   Text("$rating")
                 ],
@@ -63,27 +64,27 @@ class DoctorsList extends StatelessWidget {
             ],
           ),
         ),
+        const SizedBox(width: 24,),
         Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 25, left: 30),
-              child: Text.rich(TextSpan(
-                  text: "$title\n",
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  children: [
-                    TextSpan(
-                        style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.black.withOpacity(0.5)),
-                        text: subTitle)
-                  ])),
-            ),
-            SizedBox(height: 10,),
+            Text.rich(TextSpan(
+              
+                text: "$title\n",
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+                children: [
+                  TextSpan(
+                      style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black.withOpacity(0.5)),
+                      text: subTitle)
+                ])),
+            const SizedBox(height: 10,),
             TextButton(
               style: TextButton.styleFrom(
                 backgroundColor: Colors.grey.withOpacity(0.2),

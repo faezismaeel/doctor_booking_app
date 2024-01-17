@@ -26,7 +26,7 @@ class Categories extends StatelessWidget {
             ),
             )),
         ),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
@@ -66,7 +66,7 @@ final GestureTapCallback press;
               borderRadius: BorderRadius.circular(10)
             ),
           ),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
            Text(text,
            textAlign: TextAlign.center,
            style: TextStyle(
