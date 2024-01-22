@@ -1,15 +1,20 @@
+import 'package:book_your_doctor/components/default_button.dart';
+import 'package:book_your_doctor/screens/schedules_details_screen/schedules_screen.dart';
 import 'package:flutter/material.dart';
 
 class Schedules extends StatefulWidget {
-  const Schedules({super.key});
+  const Schedules({super.key, required this.drname});
+
+  final String drname;
 
   @override
   State<Schedules> createState() => _SchedulesState();
 }
 
 class _SchedulesState extends State<Schedules> {
+    String selectedTime = "";
     DateTime currentDate = DateTime.now();
-    DateTime selectedDate =DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+    DateTime selectedDate =DateTime(DateTime.now().day, DateTime.now().month, DateTime.now().year);
     List months = [
       "January",
       "February",
@@ -23,6 +28,16 @@ class _SchedulesState extends State<Schedules> {
       "October",
       "November",
       "December"
+    ];
+     List time =[
+      "11:00AM",
+      "12:00PM",
+      "01:00PM",
+      "02:00PM",
+      "03:00PM",
+      "04:00PM",
+      "05:00PM",
+      "06:00PM",
     ];
   @override
   Widget build(BuildContext context) {
@@ -103,7 +118,72 @@ class _SchedulesState extends State<Schedules> {
                       })
                     ],
                   ),
-                )
+                ),
+                 const SizedBox(
+                height: 10,
+              ),
+              // const VistingHour(),
+              Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        const Align(
+          alignment: Alignment.topLeft,
+          child: Text("Visit Hour",
+           style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                ),
+          ),
+        ),
+        const SizedBox(height: 10,),
+        Wrap(
+          spacing: 10,
+          runSpacing: 10,
+          children: time.map((e) =>  GestureDetector(
+            onTap: (){
+              setState(() {
+                selectedTime= e;
+                print(selectedTime);
+              });
+            },
+            child: Container(
+                height: 40,
+                width: 80,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(e,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: selectedTime == e ? Colors.white : const Color.fromARGB(255, 87, 82, 82)
+                  ),
+                  ),
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.grey.withOpacity(0.3)),
+                  color: selectedTime == e ? const Color.fromARGB(198, 159, 119, 253) : null
+                ),
+              ),
+          )).toList(),
+        ),
+      ],
+    ),
+              const SizedBox(height: 25,),
+              DefaultButton(
+                text: "Book Appoinment",
+                press: (){
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_){
+                      return SchedulesScreen(
+                        drname: widget.drname, 
+                        date: selectedDate.toString(),
+                        time: "11",
+                        image: "assets/images/doctor_two.png",
+                        rating: 11);
+                    })
+                  );
+                })
+
       ],
     );
   }

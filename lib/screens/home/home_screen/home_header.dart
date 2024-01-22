@@ -10,7 +10,7 @@ class HomeHeader extends StatelessWidget {
             height: SizeConfig.screenHeight/2,
             width: SizeConfig.screenWidth,
             decoration: const BoxDecoration(
-                color: Color.fromARGB(200, 180, 148, 252),
+                color: Color.fromARGB(199, 169, 133, 252),
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(30),
                     bottomRight: Radius.circular(30))),

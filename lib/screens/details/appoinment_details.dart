@@ -1,7 +1,5 @@
-import 'package:book_your_doctor/defaultbutton/default_button.dart';
 import 'package:book_your_doctor/screens/details/analystics.dart';
 import 'package:book_your_doctor/screens/details/schedule/schedules.dart';
-import 'package:book_your_doctor/screens/details/schedule/visiting_hour.dart';
 import 'package:flutter/material.dart';
 
 class AppoinmemntDetails extends StatefulWidget {
@@ -97,16 +95,7 @@ class _AppoinmemntDetailsState extends State<AppoinmemntDetails> {
               const SizedBox(
                 height: 10,
               ),
-             const Schedules(),
-               const SizedBox(
-                height: 10,
-              ),
-              const VistingHour(),
-              const SizedBox(height: 25,),
-              DefaultButton(
-                text: "Book Appoinment",
-                press: (){},
-              ),
+              Schedules(drname: widget.name,),            
             ],
           ),
         ),

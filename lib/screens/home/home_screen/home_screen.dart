@@ -1,8 +1,10 @@
+import 'package:book_your_doctor/components/custom_navbar.dart';
 import 'package:book_your_doctor/screens/home/categories/categories.dart';
 import 'package:book_your_doctor/screens/home/home_screen/doctors_list.dart';
 import 'package:book_your_doctor/screens/home/home_screen/home_header.dart';
 import 'package:book_your_doctor/size_config/size_config.dart';
 import 'package:flutter/material.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
 
   SizeConfig().init(context);
-    return const Scaffold(
+    return  Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -37,10 +39,15 @@ class _HomeScreenState extends State<HomeScreen> {
               image: "assets/images/doctor_two.png",
               rating: 4,
             ),
-
+            SizedBox(height: 10,),
           ],
         ),
+      ),
+      bottomNavigationBar: CustomNavBar(
+        selectedMenu: MenuState.home,
       ),
     );
   }
 }
+
+
