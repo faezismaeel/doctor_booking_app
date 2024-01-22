@@ -1,5 +1,4 @@
 import 'package:book_your_doctor/components/custom_navbar.dart';
-import 'package:book_your_doctor/screens/details/appoinment_details.dart';
 import 'package:book_your_doctor/size_config/size_config.dart';
 import 'package:flutter/material.dart';
 
