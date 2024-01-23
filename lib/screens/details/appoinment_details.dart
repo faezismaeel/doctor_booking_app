@@ -95,7 +95,7 @@ class _AppoinmemntDetailsState extends State<AppoinmemntDetails> {
               const SizedBox(
                 height: 10,
               ),
-              Schedules(drname: widget.name,),            
+              Schedules(drname: widget.name,image: widget.image,),            
             ],
           ),
         ),

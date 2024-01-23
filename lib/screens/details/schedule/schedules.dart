@@ -1,11 +1,13 @@
 import 'package:book_your_doctor/components/default_button.dart';
-import 'package:book_your_doctor/screens/schedules_details_screen/schedules_screen.dart';
+import 'package:book_your_doctor/functions/db_functions.dart';
+import 'package:book_your_doctor/models/appoinments_model.dart';
+import 'package:book_your_doctor/screens/home/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class Schedules extends StatefulWidget {
-  const Schedules({super.key, required this.drname});
+  const Schedules({super.key, required this.drname, required this.image});
 
-  final String drname;
+  final String drname,image;
 
   @override
   State<Schedules> createState() => _SchedulesState();
@@ -15,6 +17,7 @@ class _SchedulesState extends State<Schedules> {
     String selectedTime = "";
     DateTime currentDate = DateTime.now();
     DateTime selectedDate =DateTime(DateTime.now().day, DateTime.now().month, DateTime.now().year);
+
     List months = [
       "January",
       "February",
@@ -87,6 +90,7 @@ class _SchedulesState extends State<Schedules> {
                             setState(() {
                               selectedDate = date;
                               print(selectedDate);
+
                             });
                           },
                           child: Container(
@@ -172,17 +176,33 @@ class _SchedulesState extends State<Schedules> {
               DefaultButton(
                 text: "Book Appoinment",
                 press: (){
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_){
-                      return SchedulesScreen(
-                        drname: widget.drname, 
-                        date: selectedDate.toString(),
-                        time: "11",
-                        image: "assets/images/doctor_two.png",
-                        rating: 11);
-                    })
-                  );
-                })
+                  final schedule = Appoinments(
+                    date: selectedDate,
+                    time: selectedTime,
+                    drname: widget.drname,
+                    image: widget.image,
+                    id: 1
+                    
+                    );
+                    addSchedule(schedule);
+               ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: const Text("Appointment Success",style: TextStyle(color:  Color.fromARGB(197, 126, 70, 255)),),
+                  backgroundColor: Colors.white,
+                  behavior: SnackBarBehavior.floating,
+                  duration: const Duration(seconds: 3),
+                  action: SnackBarAction(
+                    label: "Dismiss", onPressed: (){
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (_){
+                          return HomeScreen();
+                        })
+                      );
+                    },
+                    textColor: Colors.black,
+                    ),
+                  ),
+);
+                    }) 
 
       ],
     );

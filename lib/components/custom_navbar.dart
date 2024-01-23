@@ -47,13 +47,12 @@ class CustomNavBar extends StatelessWidget {
            children: [
              IconButton(
               onPressed: (){
-                //  Navigator.of(context).pushReplacement(
-                //         MaterialPageRoute(builder: (_){
-                //           return const SchedulesScreen(
-                //             drname: "",
-                //           );
-                //         })
-                //       );
+                 Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (_){
+                          return const SchedulesScreen(
+                            rating: 4.0);
+                        })
+                      );
               },
               icon:  SvgPicture.asset("assets/icons/calendar.svg",
                 color: MenuState.schedules == selectedMenu ? const Color.fromARGB(197, 145, 98, 254) : Colors.blueGrey,
