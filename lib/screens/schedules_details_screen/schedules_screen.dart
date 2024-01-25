@@ -127,6 +127,7 @@ class _SchedulesScreenState extends State<SchedulesScreen> {
                           if(selectedDate != null){
                           final formattedDate = DateFormat('MMM d,EEEE,yyyy').format(selectedDate);
                             print(formattedDate);
+                            updateDate(data, selectedDate);
                             
                           }
                       },
@@ -170,4 +171,12 @@ class _SchedulesScreenState extends State<SchedulesScreen> {
     
     
     }
+     void updateDate(Appoinments data, DateTime selectedDate) {
+    setState(() {
+      data.date = selectedDate;
+      editSchedule(data);
+    });
+  }
+
 }
+ 

@@ -1,4 +1,5 @@
 import 'package:book_your_doctor/models/appoinments_model.dart';
+import 'package:book_your_doctor/models/doctors_model.dart';
 import 'package:book_your_doctor/screens/home/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -8,6 +9,9 @@ Future<void> main() async{
   await Hive.initFlutter();
   if(!Hive.isAdapterRegistered(AppoinmentsAdapter().typeId)){
     Hive.registerAdapter(AppoinmentsAdapter());
+  }
+  if(!Hive.isAdapterRegistered(DoctorsModelAdapter().typeId)){
+    Hive.registerAdapter(DoctorsModelAdapter());
   }
   runApp(const MyApp());
 }

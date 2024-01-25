@@ -181,7 +181,7 @@ class _SchedulesState extends State<Schedules> {
                     time: selectedTime,
                     drname: widget.drname,
                     image: widget.image,
-                    id: 1
+                    id: DateTime.now().millisecond
                     
                     );
                     addSchedule(schedule);

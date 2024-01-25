@@ -1,18 +1,33 @@
+import 'package:book_your_doctor/components/custom_navbar.dart';
+import 'package:book_your_doctor/functions/db_functions.dart';
+import 'package:book_your_doctor/models/doctors_model.dart';
+import 'package:book_your_doctor/screens/details/appoinment_details.dart';
 import 'package:book_your_doctor/size_config/size_config.dart';
 import 'package:flutter/material.dart';
 
-class DoctorsList extends StatelessWidget {
-  const DoctorsList(
-      {super.key,
-      required this.title,
-      required this.subTitle,
-      required this.image,
-      required this.rating});
-  final String title, subTitle, image;
-  final double rating;
+class DoctorsHiveList extends StatefulWidget {
+  const DoctorsHiveList({super.key});
+
+  @override
+  State<DoctorsHiveList> createState() => _DoctorsHiveListState();
+}
+
+class _DoctorsHiveListState extends State<DoctorsHiveList> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    getDoctors();
+    return Scaffold(
+      bottomNavigationBar: const CustomNavBar(selectedMenu: MenuState.messages),
+      appBar: AppBar(
+        title: const Text("Doctors"),
+        centerTitle: true,
+      ),
+      body: ValueListenableBuilder(
+        builder: (BuildContext ctx, List<DoctorsModel> doctorsList,Widget? child){
+          return ListView.separated(
+            itemBuilder: ((context, index){
+              final data = doctorsList[index];
+             return Container(
       height: SizeConfig.screenHeight * 0.2,
       width: SizeConfig.screenWidth * 0.9,
       decoration: BoxDecoration(
@@ -33,7 +48,7 @@ class DoctorsList extends StatelessWidget {
                     child: Container(
                       height: 70,
                       width: 70,
-                      child: Image(image: AssetImage(image),fit: BoxFit.cover,),
+                      child: Image(image: AssetImage(data.image.toString()),fit: BoxFit.cover,),
                     ),
                   ),
                   const Positioned(
@@ -57,7 +72,7 @@ class DoctorsList extends StatelessWidget {
                   const SizedBox(
                     width: 5,
                   ),
-                  Text("$rating")
+                  Text(data.rating.toString())
                 ],
               )
             ],
@@ -70,7 +85,7 @@ class DoctorsList extends StatelessWidget {
           children: [
             Text.rich(TextSpan(
               
-                text: "$title\n",
+                text: "${data.drname}\n",
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -81,7 +96,7 @@ class DoctorsList extends StatelessWidget {
                           fontSize: 10,
                           fontWeight: FontWeight.normal,
                           color: Colors.black.withOpacity(0.5)),
-                      text: subTitle)
+                      text: data.subtitle)
                 ])),
             const SizedBox(height: 10,),
             TextButton(
@@ -89,11 +104,11 @@ class DoctorsList extends StatelessWidget {
                 backgroundColor: Colors.grey.withOpacity(0.2),
               ),
               onPressed: (){
-                // Navigator.of(context).push(
-                //   MaterialPageRoute(builder: (_){
-                //     return AppoinmemntDetails(image: image,name: title,);
-                //   })
-                // );
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_){
+                    return AppoinmemntDetails(image: data.image.toString(),name: data.drname.toString(),about: data.about.toString(),subtitle: data.subtitle.toString(),);
+                  })
+                );
               },
               child: const Text("Appointment",
               style: TextStyle(
@@ -105,6 +120,16 @@ class DoctorsList extends StatelessWidget {
           ],
         ),
       ]),
+    );
+            }),
+            separatorBuilder: (ctx,index){
+              return const Divider();
+            },
+            itemCount: doctorsList.length);
+        },
+        valueListenable: doctorsNotifier,
+        
+        ),
     );
   }
 }

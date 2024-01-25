@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 class AppoinmemntDetails extends StatefulWidget {
   const AppoinmemntDetails(
-      {super.key, required this.image, required this.name});
-  final String image, name;
+      {super.key, required this.image, required this.name, required this.about, required this.subtitle});
+  final String image, name,subtitle,about;
 
   @override
   State<AppoinmemntDetails> createState() => _AppoinmemntDetailsState();
@@ -53,9 +53,8 @@ class _AppoinmemntDetailsState extends State<AppoinmemntDetails> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              const Text(
-                "Cardio Specialist",
-                style: TextStyle(
+               Text( widget.subtitle,
+                style: const TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.normal,
                     color: Color.fromARGB(221, 136, 135, 135)),
@@ -79,13 +78,13 @@ class _AppoinmemntDetailsState extends State<AppoinmemntDetails> {
                const SizedBox(
                 height: 10,
               ),
-              const Align(
+               Align(
                 alignment: Alignment.centerLeft,
                 child: Text.rich(
                         TextSpan(
                             text:
-                                "Dr Name 1 is a top most in Cardiologist specialist in Naynang, Hospital at London,He is available for private consultaion.",
-                                style: TextStyle(
+                                widget.about,
+                                style: const TextStyle(
                                   color: Color.fromARGB(255, 167, 159, 159),
                                   fontSize: 17
                                 )
