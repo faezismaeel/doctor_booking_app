@@ -1,3 +1,4 @@
+import 'package:book_your_doctor/screens/login/login_screen.dart';
 import 'package:book_your_doctor/size_config/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,15 @@ class HomeHeader extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Icon(Icons.menu),
+                        IconButton(
+                          onPressed: (){
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (_){
+                                return LoginScreen();
+                              })
+                            );
+                          },
+                          icon: const Icon(Icons.menu)),
                         Container(
                           height: 60,
                           width: 60,
@@ -37,7 +46,7 @@ class HomeHeader extends StatelessWidget {
                 const Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
-                    padding: EdgeInsets.only(left: 10),
+                    padding: EdgeInsets.only(left: 15),
                     child: Text.rich(
                       TextSpan(
                         text: "Welcome Back\n",

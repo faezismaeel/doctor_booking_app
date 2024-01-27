@@ -51,8 +51,7 @@ class CustomNavBar extends StatelessWidget {
               onPressed: (){
                  Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (_){
-                          return const SchedulesScreen(
-                            rating: 4.0);
+                          return const SchedulesScreen();
                         })
                       );
               },

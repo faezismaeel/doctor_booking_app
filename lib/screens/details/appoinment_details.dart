@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 
 class AppoinmemntDetails extends StatefulWidget {
   const AppoinmemntDetails(
-      {super.key, required this.image, required this.name, required this.about, required this.subtitle});
+      {super.key, required this.image, required this.name, required this.about, required this.subtitle, required this.id});
   final String image, name,subtitle,about;
+  final int id;
 
   @override
   State<AppoinmemntDetails> createState() => _AppoinmemntDetailsState();
@@ -94,7 +95,7 @@ class _AppoinmemntDetailsState extends State<AppoinmemntDetails> {
               const SizedBox(
                 height: 10,
               ),
-              Schedules(drname: widget.name,image: widget.image,),            
+              Schedules(drname: widget.name,image: widget.image,id: widget.id,),            
             ],
           ),
         ),

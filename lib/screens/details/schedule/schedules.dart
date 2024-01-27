@@ -5,9 +5,10 @@ import 'package:book_your_doctor/screens/home/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class Schedules extends StatefulWidget {
-  const Schedules({super.key, required this.drname, required this.image});
+  const Schedules({super.key, required this.drname, required this.image, required this.id});
 
   final String drname,image;
+  final int id;
 
   @override
   State<Schedules> createState() => _SchedulesState();
@@ -89,7 +90,6 @@ class _SchedulesState extends State<Schedules> {
                           onTap: (){
                             setState(() {
                               selectedDate = date;
-                              print(selectedDate);
 
                             });
                           },
@@ -147,7 +147,6 @@ class _SchedulesState extends State<Schedules> {
             onTap: (){
               setState(() {
                 selectedTime= e;
-                print(selectedTime);
               });
             },
             child: Container(
@@ -176,13 +175,13 @@ class _SchedulesState extends State<Schedules> {
               DefaultButton(
                 text: "Book Appoinment",
                 press: (){
-                  final schedule = Appoinments(
+                  final schedule = DrAppointment(
                     date: selectedDate,
                     time: selectedTime,
                     drname: widget.drname,
                     image: widget.image,
-                    id: DateTime.now().millisecond
-                    
+                    id: DateTime.now().millisecond,
+                    drId: widget.id
                     );
                     addSchedule(schedule);
                ScaffoldMessenger.of(context).showSnackBar(
@@ -194,7 +193,7 @@ class _SchedulesState extends State<Schedules> {
                     label: "Dismiss", onPressed: (){
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (_){
-                          return HomeScreen();
+                          return const HomeScreen();
                         })
                       );
                     },

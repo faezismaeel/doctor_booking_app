@@ -1,3 +1,4 @@
+import 'package:book_your_doctor/screens/details/appoinment_details.dart';
 import 'package:book_your_doctor/size_config/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -7,9 +8,10 @@ class DoctorsList extends StatelessWidget {
       required this.title,
       required this.subTitle,
       required this.image,
-      required this.rating});
+      required this.rating, required this.id});
   final String title, subTitle, image;
   final double rating;
+  final int id;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -89,11 +91,11 @@ class DoctorsList extends StatelessWidget {
                 backgroundColor: Colors.grey.withOpacity(0.2),
               ),
               onPressed: (){
-                // Navigator.of(context).push(
-                //   MaterialPageRoute(builder: (_){
-                //     return AppoinmemntDetails(image: image,name: title,);
-                //   })
-                // );
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_){
+                    return AppoinmemntDetails(image: image, name: title, about: "Hi", subtitle: subTitle,id: id);
+                  })
+                );
               },
               child: const Text("Appointment",
               style: TextStyle(

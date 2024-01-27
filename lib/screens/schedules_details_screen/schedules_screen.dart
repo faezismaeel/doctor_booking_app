@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class SchedulesScreen extends StatefulWidget {
-  const SchedulesScreen({super.key,required this.rating});
-  final double rating;
+  const SchedulesScreen({super.key});
 
 
   @override
@@ -19,13 +18,13 @@ class _SchedulesScreenState extends State<SchedulesScreen> {
   Widget build(BuildContext context) {
     getSchedule();
     return Scaffold(
-            bottomNavigationBar: CustomNavBar(selectedMenu: MenuState.schedules),
+            bottomNavigationBar: const CustomNavBar(selectedMenu: MenuState.schedules),
             appBar: AppBar(
-              title: Text("Appoinments"),
+              title: const Text("Appoinments"),
               centerTitle: true,
             ),
             body: ValueListenableBuilder(
-      builder:(BuildContext ctx, List<Appoinments> appoinmentList, Widget? child){
+      builder:(BuildContext ctx, List<DrAppointment> appoinmentList, Widget? child){
         return   ListView.separated(
         itemBuilder: (ctx,index){
           final data = appoinmentList[index];
@@ -79,7 +78,7 @@ class _SchedulesScreenState extends State<SchedulesScreen> {
                       const SizedBox(
                         width: 5,
                       ),
-                      Text("${widget.rating}")
+                      Text(data.rating.toString())
                     ],
                   )
                 ],
@@ -91,7 +90,7 @@ class _SchedulesScreenState extends State<SchedulesScreen> {
                 mainAxisSize: MainAxisSize.min,
               children: [
                Text(
-                 data.drname!,
+                 data.drname.toString(),
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -115,7 +114,7 @@ class _SchedulesScreenState extends State<SchedulesScreen> {
                         fontSize: 18
                       ),
                     ),
-                    SizedBox(width: 10,),
+                    const SizedBox(width: 10,),
                     IconButton(
                       onPressed:() async {
                        DateTime? selectedDate = await showDatePicker(
@@ -125,22 +124,17 @@ class _SchedulesScreenState extends State<SchedulesScreen> {
                           lastDate: DateTime(2025),
                           );
                           if(selectedDate != null){
-                          final formattedDate = DateFormat('MMM d,EEEE,yyyy').format(selectedDate);
-                            print(formattedDate);
-                            updateDate(data, selectedDate);
-                            
+                            updateDate(Appoinments(date: data.date, time: data.time, drId: data.drId, id: data.id), selectedDate);
                           }
                       },
-                      icon:Icon(Icons.edit_calendar_outlined)),
+                      icon:const Icon(Icons.edit_calendar_outlined)),
                       IconButton(
                       onPressed:(){
                         if(data.id != null){
                           deleteSchedule(data.id!);
-                        } else{
-                          print("Id is null");
                         }
                       },
-                      icon:Icon(Icons.delete))
+                      icon:const Icon(Icons.delete))
                   ],
                 )
                 
@@ -156,7 +150,7 @@ class _SchedulesScreenState extends State<SchedulesScreen> {
  
         },
         separatorBuilder: (ctx,index){
-          return SizedBox();
+          return const SizedBox();
         },
         itemCount: appoinmentList.length,
 

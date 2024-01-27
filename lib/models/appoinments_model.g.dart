@@ -19,28 +19,23 @@ class AppoinmentsAdapter extends TypeAdapter<Appoinments> {
     return Appoinments(
       date: fields[2] as DateTime?,
       time: fields[3] as String?,
-      drname: fields[1] as String?,
-      image: fields[4] as String?,
+      drId: fields[1] as int?,
       id: fields[0] as int?,
-    )..rating = fields[5] as int?;
+    );
   }
 
   @override
   void write(BinaryWriter writer, Appoinments obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.drname)
+      ..write(obj.drId)
       ..writeByte(2)
       ..write(obj.date)
       ..writeByte(3)
-      ..write(obj.time)
-      ..writeByte(4)
-      ..write(obj.image)
-      ..writeByte(5)
-      ..write(obj.rating);
+      ..write(obj.time);
   }
 
   @override

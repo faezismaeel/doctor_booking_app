@@ -16,9 +16,15 @@ Future<void> main() async{
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool isDark = false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,6 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        brightness: isDark ? Brightness.dark : Brightness.light ,
         visualDensity: VisualDensity.adaptivePlatformDensity
       ),
       home: const HomeScreen(),

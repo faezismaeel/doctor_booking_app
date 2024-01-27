@@ -1,8 +1,8 @@
 import 'package:book_your_doctor/components/default_button.dart';
+import 'package:book_your_doctor/forms/add_doctors_form.dart';
 import 'package:book_your_doctor/functions/db_functions.dart';
 import 'package:book_your_doctor/models/doctors_model.dart';
 import 'package:book_your_doctor/screens/doctors/doctors_hive_list.dart';
-import 'package:book_your_doctor/screens/schedules_details_screen/schedules_screen.dart';
 import 'package:flutter/material.dart';
 
 class Doctors extends StatefulWidget {
@@ -33,178 +33,28 @@ class _DoctorsState extends State<Doctors> {
             key: formkey,
             child: Column(
               children: [
-                TextFormField(
-                  controller: nameController,
-                  validator: (value) {
-                    if(value == null || value.isEmpty){
-                      return "Please Enter Doctor's Name";
-                    }return  null;
-                  },
-                  textInputAction: TextInputAction.next,
-                  decoration:InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
-                      // gapPadding: 10,
-                    ),
-                    hintText: "Full Name",
-                    contentPadding: EdgeInsets.symmetric(horizontal: 40,vertical:20),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.red),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.red),
-                    ),
-                    labelText: "Doctor's Name",
-                    ),
-                ),
+                NameInputField(nameController: nameController),
                 SizedBox(height: 20,),
-                TextFormField(
-                  controller: subController,
-                  validator: (value) {
-                    if(value == null || value.isEmpty){
-                      return "Please Enter Subtitle";
-                    } return null;
-                    },
-                  textInputAction: TextInputAction.next,
-                  decoration:InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
-                      // gapPadding: 10,
-                    ),
-                    hintText: "Subtitle",
-                    contentPadding: EdgeInsets.symmetric(horizontal: 40,vertical:20),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.red),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.red),
-                    ),
-                    labelText: "Specialist",
-                    ),
-                ),
+                SubTitleInputField(subController: subController),
                 SizedBox(height: 20,),
-                TextFormField(
-                  controller: aboutController,
-                   validator: (value) {
-                    if(value == null || value.isEmpty){
-                      return "Please Enter About Doctor";
-                    }return null;
-                    },
-                  textInputAction: TextInputAction.next,
-                  decoration:InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
-                      // gapPadding: 10,
-                    ),
-                    hintText: "About",
-                    contentPadding: EdgeInsets.symmetric(horizontal: 40,vertical:20),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.red),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.red),
-                    ),
-                    labelText: "About Doctor",
-                    ),
-                ),
+                AboutInputField(aboutController: aboutController),
                 SizedBox(height: 20,),
-                TextFormField(
-                  controller: urlController,
-                   validator: (value) {
-                    if(value == null || value.isEmpty){
-                      return "Please Enter URL";
-                    } return null;
-                    },
-                  textInputAction: TextInputAction.next,
-                  decoration:InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
-                      // gapPadding: 10,
-                    ),
-                    hintText: "URL",
-                    contentPadding: EdgeInsets.symmetric(horizontal: 40,vertical:20),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.red),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.red),
-                    ),
-                    labelText: "Image URL",
-                    ),
-                ),
+                ImageInputField(urlController: urlController),
                 SizedBox(height: 20,),
-                TextFormField(
-                  controller: ratingController,
-                   validator: (value) {
-                    if(value!.isEmpty){
-                      return "Please Enter Ratings";
-                    } return null;
-                    },
-                  textInputAction: TextInputAction.done,
-                  decoration:InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
-                      // gapPadding: 10,
-                    ),
-                    hintText: "Rating",
-                    contentPadding: EdgeInsets.symmetric(horizontal: 40,vertical:20),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.red),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.red),
-                    ),
-                    labelText: "Dr Ratings",
-                    ),
-                ),
+                RatingInputField(ratingController: ratingController),
                 SizedBox(height: 20,),
                 DefaultButton(
                   text: "Add Doctor",
                   press: ()async{
                     if(formkey.currentState!.validate()){
                       formkey.currentState!.save();
-                      final doctor = DoctorsModel(
-                        id: DateTime.now().millisecond, 
+                      final doctor = DoctorsModel( 
+                        id: DateTime.now().millisecond,
                         drname: nameController.text,
                         subtitle: subController.text,
                         image: urlController.text,
                         about: aboutController.text,
-                        rating: ratingController.text);
+                        rating: double.tryParse(ratingController.text));
                         print(doctor);
                         addDoctor(doctor);
                         Navigator.of(context).pushReplacement(
@@ -222,3 +72,4 @@ class _DoctorsState extends State<Doctors> {
     );
   }
 }
+

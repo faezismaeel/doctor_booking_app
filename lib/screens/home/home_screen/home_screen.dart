@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
 
   SizeConfig().init(context);
-    return  Scaffold(
+    return  const Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -27,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Categories(),
             SizedBox(height: 10,),
             DoctorsList(
+              id: 8,
               title: "Dr.Name 1",
               subTitle: "Heart Surgeon , London , England",
               image: "assets/images/doctor_one.png",
@@ -34,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(height: 10,),
             DoctorsList(
+              id: 9,
                title: "Dr.Name 2",
               subTitle: "General Dentist",
               image: "assets/images/doctor_two.png",

@@ -22,7 +22,7 @@ class DoctorsModelAdapter extends TypeAdapter<DoctorsModel> {
       subtitle: fields[2] as String?,
       image: fields[3] as String?,
       about: fields[4] as String?,
-      rating: fields[5] as String?,
+      rating: fields[5] as double?,
     );
   }
 
