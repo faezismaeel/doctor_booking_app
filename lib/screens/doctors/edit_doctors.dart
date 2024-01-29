@@ -1,12 +1,12 @@
 import 'package:book_your_doctor/components/default_button.dart';
 import 'package:book_your_doctor/forms/add_doctors_form.dart';
-import 'package:book_your_doctor/functions/db_functions.dart';
+import 'package:book_your_doctor/functions/doctors_db_functions.dart';
 import 'package:book_your_doctor/models/doctors_model.dart';
 import 'package:book_your_doctor/screens/doctors/doctors_hive_list.dart';
 import 'package:flutter/material.dart';
 
 class EditDoctors extends StatefulWidget {
-  EditDoctors(
+  const EditDoctors(
       {super.key,
       required this.drname,
       required this.about,
@@ -48,7 +48,7 @@ class _EditDoctorsState extends State<EditDoctors> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Edit doctors"),
+        title: const Text("Edit doctors"),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -58,23 +58,23 @@ class _EditDoctorsState extends State<EditDoctors> {
             child: Column(
               children: [
                 NameInputField(nameController: nameController),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 SubTitleInputField(subController: subController),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 AboutInputField(aboutController: aboutController),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ImageInputField(urlController: urlController),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 RatingInputField(ratingController: ratingController),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 DefaultButton(
@@ -89,11 +89,10 @@ class _EditDoctorsState extends State<EditDoctors> {
                             image: urlController.text,
                             about: aboutController.text,
                             rating:double.tryParse(ratingController.text));
-                        print(editedDoctor.id);
                         editDoctor(editedDoctor);
                         Navigator.of(context)
                             .pushReplacement(MaterialPageRoute(builder: (_) {
-                          return DoctorsHiveList();
+                          return const DoctorsHiveList();
                         }));
                       }
                     })

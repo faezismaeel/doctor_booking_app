@@ -1,5 +1,5 @@
 import 'package:book_your_doctor/components/default_button.dart';
-import 'package:book_your_doctor/functions/db_functions.dart';
+import 'package:book_your_doctor/functions/appoinment_db_functions.dart';
 import 'package:book_your_doctor/models/appoinments_model.dart';
 import 'package:book_your_doctor/screens/home/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,9 @@
 import 'package:book_your_doctor/models/appoinments_model.dart';
 import 'package:book_your_doctor/models/doctors_model.dart';
+import 'package:book_your_doctor/models/user_model.dart';
 import 'package:book_your_doctor/screens/home/home_screen/home_screen.dart';
+import 'package:book_your_doctor/screens/splash/splash_screen.dart';
+import 'package:book_your_doctor/services/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -12,6 +15,9 @@ Future<void> main() async{
   }
   if(!Hive.isAdapterRegistered(DoctorsModelAdapter().typeId)){
     Hive.registerAdapter(DoctorsModelAdapter());
+  }
+  if(!Hive.isAdapterRegistered(UserModelAdapter().typeId)){
+    Hive.registerAdapter(UserModelAdapter());
   }
   runApp(const MyApp());
 }
@@ -35,7 +41,16 @@ class _MyAppState extends State<MyApp> {
         brightness: isDark ? Brightness.dark : Brightness.light ,
         visualDensity: VisualDensity.adaptivePlatformDensity
       ),
-      home: const HomeScreen(),
+      home: FutureBuilder(
+        future: getLogin(),
+        builder: (context,snapshot){
+          if(snapshot.data == true){
+            return const HomeScreen();
+          }else{
+            return const SplashScreen();
+          }
+        }
+        ),
       debugShowCheckedModeBanner: false,
       
     );

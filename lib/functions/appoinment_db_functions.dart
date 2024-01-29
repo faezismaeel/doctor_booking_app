@@ -1,29 +1,12 @@
 import 'package:book_your_doctor/models/appoinments_model.dart';
 import 'package:book_your_doctor/models/doctors_model.dart';
+import 'package:book_your_doctor/models/user_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-ValueNotifier<List<DoctorsModel>> doctorsNotifier = ValueNotifier([]);
 ValueNotifier<List<DrAppointment>> scheduleNotifier = ValueNotifier([]);
 
-Future<void> addDoctor(DoctorsModel value) async {
-  final doctors = await Hive.openBox<DoctorsModel>('doctors');
-  final _id = await doctors.put(value.id, value);
-  doctorsNotifier.value.add(value);
-  doctorsNotifier.notifyListeners();
-}
 
-Future<List<DoctorsModel>> getDoctors() async {
-  final doctors = await Hive.openBox<DoctorsModel>('doctors');
-  doctorsNotifier.value = doctors.values.toList();
-  doctorsNotifier.notifyListeners();
-  return doctors.values.toList();
-}
-
-Future<void> editDoctor(DoctorsModel value) async {
-  final doctors = await Hive.openBox<DoctorsModel>('doctors');
-  doctors.put(value.id, value); 
-}
 
 
 Future<void> addSchedule(DrAppointment value) async {
@@ -43,7 +26,6 @@ Future<List<Appoinments>> getSchedule() async {
       // print(schedule.values.map((e) => e.date));
         List<DrAppointment> res=[];
   for (Appoinments appoinment in schedule.values) {
-    print(appoinment.date);
     final myDoctor = doctors.values
         .where((element) => element.id == appoinment.drId)
         .toList();
@@ -79,4 +61,18 @@ Future<void> deleteSchedule(int id) async {
   final schedule = await Hive.openBox<Appoinments>('schedule');
   await schedule.delete(id);
   getSchedule();
+}
+
+
+
+Future<List<UserModel>> currentUser() async{
+  final user = await Hive.openBox<UserModel>('user');
+
+  for(UserModel loggedUser in user.values){
+    final myUser = user.values
+    .where((element) => element.id == loggedUser.id).toList();
+    if(myUser.isNotEmpty){
+      print(myUser);
+    }
+  }return user.values.toList();
 }

@@ -18,7 +18,7 @@ class DefaultButton extends StatelessWidget {
         onPressed: press,
         child: Text(text,
         style: const TextStyle(
-          fontSize: 20,
+          fontSize: 15,
           color: Colors.white
         ),
         ),

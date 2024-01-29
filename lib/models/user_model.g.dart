@@ -1,41 +1,44 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'appoinments_model.dart';
+part of 'user_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class AppoinmentsAdapter extends TypeAdapter<Appoinments> {
+class UserModelAdapter extends TypeAdapter<UserModel> {
   @override
-  final int typeId = 2;
+  final int typeId = 3;
 
   @override
-  Appoinments read(BinaryReader reader) {
+  UserModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Appoinments(
+    return UserModel(
       id: fields[0] as int?,
-      drId: fields[1] as int?,
-      date: fields[2] as DateTime?,
-      time: fields[3] as String?,
+      name: fields[1] as String?,
+      email: fields[2] as String?,
+      number: fields[3] as int?,
+      password: fields[4] as String?,
     );
   }
 
   @override
-  void write(BinaryWriter writer, Appoinments obj) {
+  void write(BinaryWriter writer, UserModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.drId)
+      ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.date)
+      ..write(obj.email)
       ..writeByte(3)
-      ..write(obj.time);
+      ..write(obj.number)
+      ..writeByte(4)
+      ..write(obj.password);
   }
 
   @override
@@ -44,7 +47,7 @@ class AppoinmentsAdapter extends TypeAdapter<Appoinments> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is AppoinmentsAdapter &&
+      other is UserModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

@@ -1,6 +1,9 @@
 import 'package:book_your_doctor/screens/login/login_screen.dart';
+import 'package:book_your_doctor/screens/users_list/users_list.dart';
+import 'package:book_your_doctor/services/shared_preferences.dart';
 import 'package:book_your_doctor/size_config/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({super.key});
@@ -27,17 +30,34 @@ class HomeHeader extends StatelessWidget {
                           onPressed: (){
                             Navigator.of(context).push(
                               MaterialPageRoute(builder: (_){
-                                return LoginScreen();
+                                return const UsersListScreen();
                               })
                             );
                           },
                           icon: const Icon(Icons.menu)),
+                          IconButton(
+                            onPressed: (){
+                              clearPrefs();
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(builder: (_){
+                                  return LoginScreen();
+                                })
+                              );
+                            },
+                            icon: Icon(Icons.logout),
+                            ),
                         Container(
                           height: 60,
                           width: 60,
                           decoration: BoxDecoration(
-                              color: Colors.white,
                               borderRadius: BorderRadius.circular(10)),
+                              child: FutureBuilder(
+                                future: getUser(), 
+                                builder: (context,snapshot){
+                                  if(snapshot.hasData){
+                                    return Text(snapshot.data??"");
+                                  }return Text("hii");
+                                }),
                         )
                       ],
                     ),

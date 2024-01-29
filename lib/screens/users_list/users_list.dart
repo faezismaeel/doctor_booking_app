@@ -1,33 +1,29 @@
-import 'package:book_your_doctor/components/custom_navbar.dart';
-import 'package:book_your_doctor/functions/doctors_db_functions.dart';
-import 'package:book_your_doctor/models/doctors_model.dart';
-import 'package:book_your_doctor/screens/details/appoinment_details.dart';
-import 'package:book_your_doctor/screens/doctors/edit_doctors.dart';
+import 'package:book_your_doctor/functions/user_db_functions.dart';
+import 'package:book_your_doctor/models/user_model.dart';
 import 'package:book_your_doctor/size_config/size_config.dart';
 import 'package:flutter/material.dart';
 
-class DoctorsHiveList extends StatefulWidget {
-  const DoctorsHiveList({super.key});
+class UsersListScreen extends StatefulWidget {
+  const UsersListScreen({super.key});
 
   @override
-  State<DoctorsHiveList> createState() => _DoctorsHiveListState();
+  State<UsersListScreen> createState() => _UsersListScreenState();
 }
 
-class _DoctorsHiveListState extends State<DoctorsHiveList> {
+class _UsersListScreenState extends State<UsersListScreen> {
   @override
   Widget build(BuildContext context) {
-    getDoctors();
+    getUsers();
     return Scaffold(
-      bottomNavigationBar: const CustomNavBar(selectedMenu: MenuState.messages),
       appBar: AppBar(
-        title: const Text("Doctors"),
+        title: const Text("Users"),
         centerTitle: true,
       ),
       body: ValueListenableBuilder(
-        builder: (BuildContext ctx, List<DoctorsModel> doctorsList,Widget? child){
+        builder: (BuildContext context,List<UserModel> usersList , Widget? child){
           return ListView.separated(
-            itemBuilder: ((context, index){
-              final data = doctorsList[index];
+            itemBuilder: ((context,index){
+              final data = usersList[index];
              return Container(
                    margin: const EdgeInsets.all(10),
                    height: SizeConfig.screenHeight * 0.2,
@@ -41,7 +37,6 @@ class _DoctorsHiveListState extends State<DoctorsHiveList> {
                      Padding(
                        padding: const EdgeInsets.only(top: 20, left: 20),
                        child: Column(
-                         // mainAxisSize: MainAxisSize.min,
                          children: [
               Stack(
                 children: [
@@ -50,7 +45,7 @@ class _DoctorsHiveListState extends State<DoctorsHiveList> {
                     child: Container(
                       height: 70,
                       width: 70,
-                      child: Image(image: AssetImage(data.image.toString()),fit: BoxFit.cover,),
+                      child: const Image(image: AssetImage("assets/images/doctor_two.png"),fit: BoxFit.cover,),
                     ),
                   ),
                   const Positioned(
@@ -74,7 +69,7 @@ class _DoctorsHiveListState extends State<DoctorsHiveList> {
                   const SizedBox(
                     width: 5,
                   ),
-                  Text(data.rating.toString())
+                  Text(data.id.toString())
                 ],
               )
                          ],
@@ -87,7 +82,7 @@ class _DoctorsHiveListState extends State<DoctorsHiveList> {
                        children: [
                          Text.rich(TextSpan(
               
-                text: "${data.drname}\n",
+                text: "${data.name}\n",
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -98,60 +93,22 @@ class _DoctorsHiveListState extends State<DoctorsHiveList> {
                           fontSize: 10,
                           fontWeight: FontWeight.normal,
                           color: Colors.black.withOpacity(0.5)),
-                      text: data.subtitle)
+                      text: data.email)
                 ])),
                          const SizedBox(height: 10,),
-                         Row(
-              children: [
-                TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.grey.withOpacity(0.2),
-                  ),
-                  onPressed: (){
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_){
-                        return AppoinmemntDetails(id: data.id! , image: data.image.toString(),name: data.drname.toString(),about: data.about.toString(),subtitle: data.subtitle.toString());
-                      })
-                    );
-                  },
-                  child: const Text("Appointment",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.normal
-                  ),
-                  ),
-                ),
-                const SizedBox(width: 10,),
-                 IconButton(
-                    icon: const Icon(Icons.edit),
-                    onPressed: (){
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_){
-                          return EditDoctors(
-                            id: data.id!,
-                            drname: data.drname.toString(),
-                            about: data.about.toString(),
-                            image: data.image.toString(),
-                            rating: data.rating.toString(),
-                            subtitle: data.subtitle.toString());
-                        })
-                      );
-                    },
-                    )
-              ],
-                         ),
                        ],
                      ),
                    ]),
                  );
-            }),
+            }
+            ),
             separatorBuilder: (ctx,index){
               return const SizedBox();
             },
-            itemCount: doctorsList.length);
+            itemCount: usersList.length);
         },
-        valueListenable: doctorsNotifier,
-        
+        valueListenable: userNotifier,
+
         ),
     );
   }

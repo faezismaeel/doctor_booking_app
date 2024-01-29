@@ -1,211 +1,37 @@
 import 'package:flutter/material.dart';
 
-class RatingInputField extends StatelessWidget {
-  const RatingInputField({
-    super.key,
-    required this.ratingController,
+class NameFieldForm extends StatelessWidget {
+  const NameFieldForm({
+    super.key, required this.controller,
   });
 
-  final TextEditingController ratingController;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: ratingController,
-       validator: (value) {
-        if(value!.isEmpty){
-          return "Please Enter Ratings";
-        } return null;
-        },
-      textInputAction: TextInputAction.done,
-      decoration:InputDecoration(
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
-          // gapPadding: 10,
-        ),
-        hintText: "Rating",
-        contentPadding: const EdgeInsets.symmetric(horizontal: 40,vertical:20),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Colors.red),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Colors.red),
-        ),
-        labelText: "Dr Ratings",
-        ),
-    );
-  }
-}
-
-class ImageInputField extends StatelessWidget {
-  const ImageInputField({
-    super.key,
-    required this.urlController,
-  });
-
-  final TextEditingController urlController;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: urlController,
-       validator: (value) {
-        if(value == null || value.isEmpty){
-          return "Please Enter URL";
-        } return null;
-        },
-      textInputAction: TextInputAction.next,
-      decoration:InputDecoration(
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
-          // gapPadding: 10,
-        ),
-        hintText: "URL",
-        contentPadding: const EdgeInsets.symmetric(horizontal: 40,vertical:20),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Colors.red),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Colors.red),
-        ),
-        labelText: "Image URL",
-        ),
-    );
-  }
-}
-
-class AboutInputField extends StatelessWidget {
-  const AboutInputField({
-    super.key,
-    required this.aboutController,
-  });
-
-  final TextEditingController aboutController;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: aboutController,
-       validator: (value) {
-        if(value == null || value.isEmpty){
-          return "Please Enter About Doctor";
-        }return null;
-        },
-      textInputAction: TextInputAction.next,
-      decoration:InputDecoration(
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
-          // gapPadding: 10,
-        ),
-        hintText: "About",
-        contentPadding: const EdgeInsets.symmetric(horizontal: 40,vertical:20),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Colors.red),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Colors.red),
-        ),
-        labelText: "About Doctor",
-        ),
-    );
-  }
-}
-
-class SubTitleInputField extends StatelessWidget {
-  const SubTitleInputField({
-    super.key,
-    required this.subController,
-  });
-
-  final TextEditingController subController;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: subController,
-      validator: (value) {
-        if(value == null || value.isEmpty){
-          return "Please Enter Subtitle";
-        } return null;
-        },
-      textInputAction: TextInputAction.next,
-      decoration:InputDecoration(
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
-          // gapPadding: 10,
-        ),
-        hintText: "Subtitle",
-        contentPadding: const EdgeInsets.symmetric(horizontal: 40,vertical:20),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Colors.red),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Colors.red),
-        ),
-        labelText: "Specialist",
-        ),
-    );
-  }
-}
-
-class NameInputField extends StatelessWidget {
-  const NameInputField({
-    super.key,
-    required this.nameController,
-  });
-
-  final TextEditingController nameController;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: nameController,
-      validator: (value) {
-        if(value == null || value.isEmpty){
-          return "Please Enter Doctor's Name";
-        }return  null;
+      controller: controller,
+      validator: (value){
+        if (value!.isEmpty) {
+          return "Please enter your name";
+        }
+        return null;
       },
-      textInputAction: TextInputAction.next,
-      decoration:InputDecoration(
+      decoration: InputDecoration(
+        hintText: "Enter your name",
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
-          // gapPadding: 10,
+          borderSide: const BorderSide(
+              color: Color.fromARGB(198, 137, 87, 255)),
         ),
-        hintText: "Full Name",
-        contentPadding: const EdgeInsets.symmetric(horizontal: 40,vertical:20),
+        contentPadding: const EdgeInsets.symmetric(
+            horizontal: 40, vertical: 20),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
+          borderSide: const BorderSide(
+              color: Color.fromARGB(198, 137, 87, 255)),
         ),
+        labelText: "Name",
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
           borderSide: const BorderSide(color: Colors.red),
@@ -214,8 +40,189 @@ class NameInputField extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           borderSide: const BorderSide(color: Colors.red),
         ),
-        labelText: "Doctor's Name",
+      ),
+    );
+  }
+}
+
+
+class SignEmailForm extends StatelessWidget {
+  const SignEmailForm({
+    super.key,
+    required this.controller,
+  });
+  final TextEditingController controller;
+  @override
+  Widget build(BuildContext context) {
+    final RegExp emailValidatorRegExp = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+    return TextFormField(
+      controller: controller,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "Please enter your email";
+        }else if(!emailValidatorRegExp.hasMatch(value)){
+          return "Please enter a valid email";
+        }
+        return null;
+      },
+      // controller: emailController,
+      decoration: InputDecoration(
+        hintText: "Enter your email",
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
         ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
+        ),
+        labelText: "Email",
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: Colors.red),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: Colors.red),
+        ),
+      ),
+    );
+  }
+}
+
+
+class PhoneFieldForm extends StatelessWidget {
+  const PhoneFieldForm({
+    super.key, required this.controller,
+  });
+
+  final TextEditingController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      keyboardType: TextInputType.phone,
+      validator: (value){
+        if (value!.isEmpty) {
+          return "Please enter your phone";
+        } return null;
+      },
+      // controller: emailController,
+      decoration: InputDecoration(
+        hintText: "Enter your number",
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide:
+              const BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
+        ),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide:
+              const BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
+        ),
+        labelText: "PHONE",
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: Colors.red),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: Colors.red),
+        ),
+      ),
+    );
+  }
+}
+
+
+class SignPassForm extends StatelessWidget {
+  const SignPassForm({
+    super.key,
+    required this.controller,
+  });
+  final TextEditingController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      validator: (value){
+        if (value!.isEmpty) {
+          return "Please enter your password";
+        } else if(value.length < 8){
+          return "Password must contain 8 characters";
+        }
+        return null;
+      },
+      controller: controller,
+      obscureText: true,
+      decoration: InputDecoration(
+        hintText: "Enter your Password",
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
+        ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
+        ),
+        labelText: "Password",
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: Colors.red),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: Colors.red),
+        ),
+      ),
+    );
+  }
+}
+
+class ConformPassForm extends StatelessWidget {
+  const ConformPassForm({
+    super.key,
+    required this.controller,
+  });
+  final TextEditingController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      validator: (value){
+        if (value!.isEmpty) {
+          return "Please conform your password";
+        } 
+        return null;
+      },
+      controller: controller,
+      obscureText: true,
+      decoration: InputDecoration(
+        hintText: "Re-Enter your Password",
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
+        ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: Color.fromARGB(198, 137, 87, 255)),
+        ),
+        labelText: "Conform Password",
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: Colors.red),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(color: Colors.red),
+        ),
+      ),
     );
   }
 }
