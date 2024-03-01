@@ -3,10 +3,10 @@ import 'package:book_your_doctor/components/account_exist_text.dart';
 import 'package:book_your_doctor/forms/signforms.dart';
 import 'package:book_your_doctor/functions/user_db_functions.dart';
 import 'package:book_your_doctor/models/user_model.dart';
+import 'package:book_your_doctor/screens/home/home_screen/home_screen.dart';
 import 'package:book_your_doctor/screens/login/signupscreen.dart';
 import 'package:book_your_doctor/services/shared_preferences.dart';
 import 'package:book_your_doctor/size_config/size_config.dart';
-import 'package:book_your_doctor/webview/webview_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -88,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       setLogin();
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (_){
-                          return const WebViewScreen();
+                          return const HomeScreen();
                         })
                       );
                     }

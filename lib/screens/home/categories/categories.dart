@@ -62,7 +62,7 @@ final GestureTapCallback press;
             height: 60,
             child: SvgPicture.asset(icon),
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.black.withOpacity(0.3)),
+              border: Border.all(color: Colors.black.withOpacity(0.9)),
               borderRadius: BorderRadius.circular(10)
             ),
           ),

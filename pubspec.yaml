@@ -41,6 +41,7 @@ dependencies:
   hive_flutter: ^1.1.0
   webview_flutter: ^4.4.4
   shared_preferences: ^2.2.2
+  adaptive_theme: ^3.6.0
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/screenshots/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

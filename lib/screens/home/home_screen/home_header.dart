@@ -1,9 +1,9 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:book_your_doctor/screens/login/login_screen.dart';
 import 'package:book_your_doctor/screens/users_list/users_list.dart';
 import 'package:book_your_doctor/services/shared_preferences.dart';
 import 'package:book_your_doctor/size_config/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({super.key});
@@ -46,6 +46,38 @@ class HomeHeader extends StatelessWidget {
                             },
                             icon: Icon(Icons.logout),
                             ),
+                            Container(
+                  width: 100,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(20)
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: (){
+                          AdaptiveTheme.of(context).setLight();
+                          print("Switched to light theme");
+                        },
+                        icon: Icon(Icons.light_mode_outlined,
+                        color: AdaptiveTheme.of(context).mode.isDark ? Colors.grey : Colors.black,
+                        ),
+                        ),
+                      IconButton(
+                        onPressed: (){
+                           AdaptiveTheme.of(context).setDark();
+                          print("Switched to drak theme");
+
+                        },
+                        icon: Icon(Icons.dark_mode_outlined,
+                        color: AdaptiveTheme.of(context).mode.isDark ? Colors.white : Colors.grey,
+
+                        ),
+                        )
+                    ],
+                  ),
+                ),
                         Container(
                           height: 60,
                           width: 60,

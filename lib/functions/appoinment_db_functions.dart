@@ -1,6 +1,5 @@
 import 'package:book_your_doctor/models/appoinments_model.dart';
 import 'package:book_your_doctor/models/doctors_model.dart';
-import 'package:book_your_doctor/models/user_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -65,14 +64,3 @@ Future<void> deleteSchedule(int id) async {
 
 
 
-Future<List<UserModel>> currentUser() async{
-  final user = await Hive.openBox<UserModel>('user');
-
-  for(UserModel loggedUser in user.values){
-    final myUser = user.values
-    .where((element) => element.id == loggedUser.id).toList();
-    if(myUser.isNotEmpty){
-      print(myUser);
-    }
-  }return user.values.toList();
-}
